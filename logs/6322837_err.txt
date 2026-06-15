@@ -1,0 +1,39 @@
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]Downloading shards:  50%|█████     | 1/2 [00:30<00:30, 30.31s/it]Downloading shards: 100%|██████████| 2/2 [00:34<00:00, 14.66s/it]Downloading shards: 100%|██████████| 2/2 [00:34<00:00, 17.00s/it]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.54s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.04it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 0 examples [00:00, ? examples/s]
+Traceback (most recent call last):
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 110, in <module>
+    dataset = load_dataset("json", data_files="Annotations/val.json")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/load.py", line 1730, in load_dataset
+    ds = builder_instance.as_dataset(split=split, in_memory=keep_in_memory)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/builder.py", line 1033, in as_dataset
+    datasets = map_nested(
+               ^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/utils/py_utils.py", line 520, in map_nested
+    _single_map_nested((function, obj, batched, batch_size, types, None, True, None))
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/utils/py_utils.py", line 381, in _single_map_nested
+    return function(data_struct)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/builder.py", line 1059, in _build_single_dataset
+    ds = self._as_dataset(
+         ^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/builder.py", line 1085, in _as_dataset
+    dataset_kwargs = ArrowReader(cache_dir, self.info).read(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/datasets/arrow_reader.py", line 251, in read
+    raise ValueError(msg)
+ValueError: Instruction "train" corresponds to no data!
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[62648,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

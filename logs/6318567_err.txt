@@ -1,0 +1,18 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+  File "vqa_val_dataset.py", line 21
+    print(f"Using device: {device}")
+                                  ^
+SyntaxError: invalid syntax
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[9794,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

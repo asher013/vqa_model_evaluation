@@ -4,9 +4,7 @@ os.environ["WANDB_DISABLED"] = "true"
 from datasets import load_dataset
 import torch
 torch.zeros(1).cuda()
-from transformers import Qwen2VLForConditionalGeneration, AutoProcessor, Qwen2VLProcessor, AutoTokenizer, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model
-from trl import SFTConfig, SFTTrainer
+from transformers import Qwen2VLForConditionalGeneration, AutoProcessor, Qwen2VLProcessor
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -44,7 +42,28 @@ print(f"NUM_STEPS: {NUM_STEPS}")
 
 system_message = """You are a highly advanced Vision Language Model (VLM), specialized in analyzing, describing, and interpreting visual data for blind and low-vision users. 
 Your task is to process and extract meaningful insights from images taken by blind and low-vision users, leveraging multimodal understanding to provide accurate and contextually relevant information. 
-Your responses should have two parts to them: First, if there are image quality issues, say "image quality issues:" and list them out, otherwise say "good image". Second, if the question is unanswerable, label it as unanswerable, otherwise tell the answer."""
+For every image and question, respond ONLY with a JSON object using exactly these fields: 
+{ 
+"answer": "Direct answer to the user's question" or "Unanswerable", 
+"image_quality": "Good | Fair | Poor", 
+"quality_issues": ["list of issues"] or [] if none, 
+"confidence": "High | Medium | Low" 
+} 
+
+Use "Unanswerable" in the answer field if ANY of these conditions are true:
+- The image is too blurry, dark, or obstructed to interpret
+- The question asks about text that is not legible in the image
+- The question cannot be answered from visual information alone
+- The subject of the question is not visible in the image
+- The image is blank, corrupted, or completely unclear
+
+Rules: 
+- Always use exactly these four fields, no more, no less 
+- "answer" should directly address the question asked 
+- "quality_issues" can include: blurry, dark, overexposed, obstructed, tilted, noisy, unrecognizable 
+- Do not add any explanation outside the JSON object 
+- Do not wrap the JSON in markdown code blocks"""
+
 def format_data(sample):
     return [
         {
@@ -56,7 +75,7 @@ def format_data(sample):
             "content": [
                 {
                     "type": "image",
-                    "image": "val\\val\\"+sample["image"],
+                    "image": "val/val/"+sample["image"],
                 },
                 {
                     "type": "text",
@@ -94,25 +113,11 @@ def text_generator(sample_data):
     return output_text[0], image_inputs
 
 
-if device == "cuda":
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16
-    )
-    model = Qwen2VLForConditionalGeneration.from_pretrained(
-        MODEL_ID, 
-        device_map="auto", 
-        quantization_config=bnb_config
-        )
-
-else:
-    model = Qwen2VLForConditionalGeneration.from_pretrained(
-        MODEL_ID,
-        torch_dtype = torch.bfloat16,
-        device_map="auto"
-        )
+model = Qwen2VLForConditionalGeneration.from_pretrained(
+    MODEL_ID,
+    torch_dtype = torch.bfloat16,
+    device_map="auto"
+)
 
 processor = AutoProcessor.from_pretrained(MODEL_ID)
 processor.tokenizer.padding_side = "right"
@@ -123,7 +128,7 @@ rank = comm.Get_rank()
 size = comm.Get_size()
 
 if rank == 0:
-    dataset = load_dataset("json", data_files="Annotations\\val.json")
+    dataset = load_dataset("json", data_files="./Annotations/val.json")
     train_dataset = dataset["train"]
     train_dataset = [format_data(sample) for sample in train_dataset]
     indexed_dataset = list(enumerate(train_dataset)) # Global indexing for ordering

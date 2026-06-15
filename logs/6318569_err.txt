@@ -1,0 +1,18 @@
+[transformers] Disabling PyTorch because PyTorch >= 2.4 is required but found 2.3.1+rocm5.7
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+Traceback (most recent call last):
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 9, in <module>
+    from trl import SFTConfig, SFTTrainer
+ModuleNotFoundError: No module named 'trl'
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[10849,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

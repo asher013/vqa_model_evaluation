@@ -1,0 +1,16 @@
+Adding package `amd-rocm/5.1.0` to your environment
+no change     /opt/shared/miniforge/25.11.0-1/condabin/conda
+no change     /opt/shared/miniforge/25.11.0-1/bin/conda
+no change     /opt/shared/miniforge/25.11.0-1/bin/conda-env
+no change     /opt/shared/miniforge/25.11.0-1/bin/activate
+no change     /opt/shared/miniforge/25.11.0-1/bin/deactivate
+no change     /opt/shared/miniforge/25.11.0-1/etc/profile.d/conda.sh
+no change     /opt/shared/miniforge/25.11.0-1/etc/fish/conf.d/conda.fish
+no change     /opt/shared/miniforge/25.11.0-1/shell/condabin/Conda.psm1
+no change     /opt/shared/miniforge/25.11.0-1/shell/condabin/conda-hook.ps1
+no change     /opt/shared/miniforge/25.11.0-1/lib/python3.12/site-packages/xontrib/conda.xsh
+no change     /opt/shared/miniforge/25.11.0-1/etc/profile.d/conda.csh
+modified      /home/4357/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+

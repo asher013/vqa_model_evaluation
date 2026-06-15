@@ -1,0 +1,4 @@
+/var/spool/slurm/job6316158/slurm_script: line 12: module: command not found
+/var/spool/slurm/job6316158/slurm_script: line 13: module: command not found
+/var/spool/slurm/job6316158/slurm_script: line 14: module: command not found
+/var/spool/slurm/job6316158/slurm_script: line 17: mpirun: command not found

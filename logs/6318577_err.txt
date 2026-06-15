@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2254, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2488, in _get_module
+    raise e
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2486, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/models/qwen2_vl/modeling_qwen2_vl.py", line 38, in <module>
+    from ...modeling_layers import GradientCheckpointingLayer
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/modeling_layers.py", line 27, in <module>
+    from .processing_utils import Unpack
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/processing_utils.py", line 83, in <module>
+    from .modeling_utils import PreTrainedAudioTokenizerBase
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/modeling_utils.py", line 69, in <module>
+    from .integrations.finegrained_fp8 import ALL_FP8_EXPERTS_FUNCTIONS
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/integrations/finegrained_fp8.py", line 45, in <module>
+    _UE8M0_SF_DTYPE = torch.float8_e8m0fnu
+                      ^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/torch/__init__.py", line 2216, in __getattr__
+    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
+AttributeError: module 'torch' has no attribute 'float8_e8m0fnu'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 7, in <module>
+    from transformers import Qwen2VLForConditionalGeneration, AutoProcessor, Qwen2VLProcessor, AutoTokenizer, BitsAndBytesConfig
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2342, in __getattr__
+    raise ModuleNotFoundError(
+ModuleNotFoundError: Could not import module 'Qwen2VLForConditionalGeneration'. Are this object's requirements defined correctly?
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[12177,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

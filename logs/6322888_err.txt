@@ -1,0 +1,34 @@
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]Downloading shards:  50%|█████     | 1/2 [00:33<00:33, 33.07s/it]Downloading shards: 100%|██████████| 2/2 [00:36<00:00, 15.74s/it]Downloading shards: 100%|██████████| 2/2 [00:36<00:00, 18.34s/it]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.01it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 4319 examples [00:00, 25481.60 examples/s]Generating train split: 4319 examples [00:00, 24329.22 examples/s]
+Traceback (most recent call last):
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 148, in <module>
+    text, img = text_generator(sample)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 99, in text_generator
+    inputs = processor(
+             ^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/models/qwen2_vl/processing_qwen2_vl.py", line 117, in __call__
+    image_inputs = self.image_processor(images=images, videos=None, **output_kwargs["images_kwargs"])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/image_processing_utils.py", line 42, in __call__
+    return self.preprocess(images, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/models/qwen2_vl/image_processing_qwen2_vl.py", line 352, in preprocess
+    images = make_flat_list_of_images(images)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/transformers/image_utils.py", line 274, in make_flat_list_of_images
+    raise ValueError(f"Could not make a flat list of images from {images}")
+ValueError: Could not make a flat list of images from val/val/VizWiz_val_00000000.jpg
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[65091,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/_lazy_module.py", line 71, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/trainer/sft_config.py", line 23, in <module>
+    class SFTConfig(_BaseConfig):
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/trainer/sft_config.py", line 134, in SFTConfig
+    _VALID_DICT_FIELDS = _BaseConfig._VALID_DICT_FIELDS + ["model_init_kwargs"]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object '_BaseConfig' has no attribute '_VALID_DICT_FIELDS'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/4357/vqa_model_evaluation/vqa_val_dataset.py", line 9, in <module>
+    from trl import SFTConfig, SFTTrainer
+  File "<frozen importlib._bootstrap>", line 1412, in _handle_fromlist
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/_lazy_module.py", line 62, in __getattr__
+    value = getattr(module, name)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/_lazy_module.py", line 61, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/4357/conda-envs/qwen/pkgs/lib/python3.12/site-packages/trl/_lazy_module.py", line 73, in _get_module
+    raise RuntimeError(
+RuntimeError: Failed to import trl.trainer.sft_config because of the following error (look up to see its traceback):
+type object '_BaseConfig' has no attribute '_VALID_DICT_FIELDS'
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[61351,1],0]
+  Exit code:    1
+--------------------------------------------------------------------------

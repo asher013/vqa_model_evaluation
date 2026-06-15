@@ -1,0 +1,4 @@
+True
+None
+Using device: cuda
+NUM_STEPS: 283
